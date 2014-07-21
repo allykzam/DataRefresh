@@ -41,6 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TimeLimited\DateRange.cs" />
+    <Compile Include="TimeLimited\DateRangeActivation.cs" />
+    <Compile Include="TimeLimited\TimeLimited.cs" />
+    <Compile Include="TimeLimited\TimeLimitedCollection.cs" />
+    <Compile Include="TimeLimited\IDateRange.cs" />
+    <Compile Include="TimeLimited\ITimeLimited.cs" />
+    <Compile Include="TimeLimited\ITimeLimitedCollection.cs" />
     <Compile Include="Fetch\Fetchable.cs" />
     <Compile Include="Fetch\FetchableList.cs" />
     <Compile Include="Fetch\IFetchable.cs" />
