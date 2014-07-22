@@ -83,7 +83,7 @@ namespace DataRefresh.TimeLimited
             Array.Sort(thenSorted);
             I[] nowSorted = nowIdentifiers.ToArray();
             Array.Sort(nowSorted);
-            return thenSorted.SequenceEqual(nowSorted);
+            return !thenSorted.SequenceEqual(nowSorted);
         }
 
         /// <summary>
