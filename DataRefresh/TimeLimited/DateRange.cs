@@ -104,49 +104,27 @@ namespace DataRefresh.TimeLimited
         /// </returns>
         public bool OverlapsWith(IDateRange other)
         {
-            // If both ranges are missing the same value, they overlap
-            if ((!this.StartTime.HasValue && !other.StartTime.HasValue) ||
-                (!this.EndTime.HasValue && !other.EndTime.HasValue))
+            // If this has a start and the other has an end, make sure that the
+            // start time happens after the opposite range's end time
+            // a =>         | ....?
+            // b => ?.... |
+            if (this.StartTime.HasValue && other.EndTime.HasValue && this.StartTime.Value >= other.EndTime.Value)
             {
-                return true;
+                return false;
             }
-            // If this range is missing its start and either side of the other
-            // range is before this range's end, then the two overlap
-            else if (!this.StartTime.HasValue &&
-               ((other.StartTime.HasValue && other.StartTime.Value < this.EndTime.Value) ||
-                (other.EndTime.HasValue   && other.EndTime.Value   < this.EndTime.Value)))
+            // If this has an end and the other has a start, make sure that the
+            // start time happens after the opposite range's end time
+            // a => ?.... |
+            // b =>         | ....?
+            else if (this.EndTime.HasValue && other.StartTime.HasValue && other.StartTime.Value >= this.EndTime.Value)
             {
-                return true;
+                return false;
             }
-            // If this range is missing its end and either side of the other
-            // range is after this range's start, then the two overlap
-            else if (!this.EndTime.HasValue &&
-               ((other.EndTime.HasValue   && other.EndTime.Value   > this.StartTime.Value) ||
-                (other.StartTime.HasValue && other.StartTime.Value > this.StartTime.Value)))
-            {
-                return true;
-            }
-            // If the other range is missing its start and either side of this
-            // range is before the other range's end, then the two overlap
-            else if (!other.StartTime.HasValue &&
-               ((this.StartTime.HasValue && this.StartTime.Value < other.EndTime.Value) ||
-                (this.EndTime.HasValue   && this.EndTime.Value   < other.EndTime.Value)))
-            {
-                return true;
-            }
-            // If the other range is missing its end and either side of this
-            // range is after the other range's start, then the two overlap
-            else if (!other.EndTime.HasValue &&
-               ((this.EndTime.HasValue   && this.EndTime.Value   > other.StartTime.Value) ||
-                (this.StartTime.HasValue && this.StartTime.Value > other.StartTime.Value)))
-            {
-                return true;
-            }
-            // If both range have both sides
-            else
-            {
-                return this.StartTime.Value < other.EndTime.Value && other.StartTime.Value < this.EndTime.Value;
-            }
+            // For any other combination, if one range's start can't be said to
+            // come after the other's end, then the two overlap. This covers
+            // the cases when both ranges have only a start or only have an end
+            // as well.
+            return true;
         }
 
         /// <summary>
