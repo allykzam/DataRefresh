@@ -11,10 +11,12 @@
 *.lib
 bin/
 obj/
+packages/
 
 ## Visual Studio Garbage
 *.suo
 *.user
+*.sln.ide
 
 ## Test Project Results
 TestResults/
@@ -44,3 +46,4 @@ TestResults/
 Icon?
 ehthumbs.db
 Thumbs.db
+
