@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataRefresh", "DataRefresh\DataRefresh.csproj", "{29B3861E-942E-43A4-BB06-BCC11219A9C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataRefresh.Tests", "DataRefresh.Tests\DataRefresh.Tests.csproj", "{F38F79D4-A8BD-4284-BDF1-8F0413C7D35D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{29B3861E-942E-43A4-BB06-BCC11219A9C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29B3861E-942E-43A4-BB06-BCC11219A9C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29B3861E-942E-43A4-BB06-BCC11219A9C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F38F79D4-A8BD-4284-BDF1-8F0413C7D35D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F38F79D4-A8BD-4284-BDF1-8F0413C7D35D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F38F79D4-A8BD-4284-BDF1-8F0413C7D35D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F38F79D4-A8BD-4284-BDF1-8F0413C7D35D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
