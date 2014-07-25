@@ -129,5 +129,43 @@ namespace DataRefresh.Tests.TimeLimited
                 Assert.IsFalse(second.OverlapsWith(first));
             }
         }
+
+        [TestMethod]
+        public void DateRange_IsCurrent_Verify()
+        {
+            DateTimeOffset now = DateTimeOffset.UtcNow;
+
+            DateRangeArgs[] current =
+            {
+                new DateRangeArgs(now.AddSeconds(-1), null, true),
+                new DateRangeArgs(now.AddSeconds(-0), null, true),
+                new DateRangeArgs(null, now.AddSeconds(1), true),
+                new DateRangeArgs(null, now.AddSeconds(0), true),
+                new DateRangeArgs(now.AddSeconds(-1), now.AddSeconds(1), true),
+                new DateRangeArgs(now.AddSeconds(-0), now.AddSeconds(1), true),
+                new DateRangeArgs(now.AddSeconds(-1), now.AddSeconds(0), true),
+                new DateRangeArgs(now.AddSeconds(-0), now.AddSeconds(0), true)
+            };
+            DateRangeArgs[] notCurrent =
+            {
+                new DateRangeArgs(now.AddSeconds(1), null, true),
+                new DateRangeArgs(null, now.AddSeconds(-1), true),
+                new DateRangeArgs(null, null, null),
+                new DateRangeArgs(now.AddSeconds(1), now.AddSeconds(2), true),
+                new DateRangeArgs(now.AddSeconds(-2), now.AddSeconds(-1), true)
+            };
+
+            // Check each current value
+            foreach (DateRangeArgs arg in current)
+            {
+                Assert.IsTrue((new DateRange(arg.Item1, arg.Item2, arg.Item3)).IsCurrent(now));
+            }
+
+            // Check each not-current value
+            foreach (DateRangeArgs arg in notCurrent)
+            {
+                Assert.IsFalse((new DateRange(arg.Item1, arg.Item2, arg.Item3)).IsCurrent(now));
+            }
+        }
     }
 }
