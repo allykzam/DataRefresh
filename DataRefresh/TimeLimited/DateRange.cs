@@ -80,8 +80,8 @@ namespace DataRefresh.TimeLimited
             }
             else
             {
-                if ((_StartTime == null || _StartTime < now) &&
-                    (_EndTime   == null || _EndTime   > now))
+                if ((_StartTime == null || _StartTime <= now) &&
+                    (_EndTime   == null || _EndTime   >= now))
                 {
                     return true;
                 }
