@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>$id$</id>
+    <id>amazingant.DataRefresh</id>
     <version>$version$</version>
     <authors>Anthony Perez</authors>
     <licenseUrl>https://raw.githubusercontent.com/amazingant/DataRefresh/6988127039b74ee453f8ccfa834361b12ac3cdcc/LICENSE</licenseUrl>
