@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <authors>Anthony Perez</authors>
+    <licenseUrl>https://raw.githubusercontent.com/amazingant/DataRefresh/6988127039b74ee453f8ccfa834361b12ac3cdcc/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/amazingant/DataRefresh</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Collection of interfaces and base implementations for different ways data may need to be loaded/refreshed</description>
+    <copyright>Copyright © Anthony Perez 2014</copyright>
+  </metadata>
+</package>
