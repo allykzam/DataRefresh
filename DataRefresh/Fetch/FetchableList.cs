@@ -195,12 +195,12 @@ namespace DataRefresh.Fetch
         /// <summary>
         /// Pushes the current collection of items to a ComboBox
         /// </summary>
-        /// <param name="displayBox">
+        /// <param name="DisplayBoxCombo">
         /// The ComboBox to display the items in
         /// </param>
-        public void DisplayList(ComboBox displayBox)
+        public void DisplayListCombo(ComboBox DisplayBoxCombo)
         {
-            DisplayList(null, displayBox);
+            DisplayListCombo(null, DisplayBoxCombo);
         }
 
         /// <summary>
@@ -208,26 +208,65 @@ namespace DataRefresh.Fetch
         /// select the same item
         /// </summary>
         /// <param name="selectedItem">The currently selected item</param>
-        /// <param name="displayBox">
+        /// <param name="DisplayBoxCombo">
         /// The ComboBox to display the items in
         /// </param>
-        public void DisplayList(T selectedItem, ComboBox displayBox)
+        public void DisplayListCombo(T selectedItem, ComboBox DisplayBoxCombo)
         {
             this.Sort();
-            DisplayList_Internal(selectedItem, displayBox);
+            DisplayListCombo_Internal(selectedItem, DisplayBoxCombo);
         }
 
-        private void DisplayList_Internal(T selectedItem, ComboBox displayBox)
+        private void DisplayListCombo_Internal(T selectedItem, ComboBox DisplayBoxCombo)
         {
-            if (displayBox.InvokeRequired)
+            if (DisplayBoxCombo.InvokeRequired)
             {
-                displayBox.Invoke(new Action(() => DisplayList_Internal(selectedItem, displayBox)));
+                DisplayBoxCombo.Invoke(new Action(() => DisplayListCombo_Internal(selectedItem, DisplayBoxCombo)));
             }
             else
             {
-                displayBox.Items.Clear();
-                displayBox.Items.AddRange(this.Select((x) => x.DisplayIdentifier).ToArray());
-                displayBox.SelectedIndex = DefaultInList(selectedItem);
+                DisplayBoxCombo.Items.Clear();
+                DisplayBoxCombo.Items.AddRange(this.Select((x) => x.DisplayIdentifier).ToArray());
+                DisplayBoxCombo.SelectedIndex = DefaultInList(selectedItem);
+            }
+        }
+
+        /// <summary>
+        /// Pushes the current collection of items to a ListBox
+        /// </summary>
+        /// <param name="DisplayBoxList">
+        /// The ListBox to display the items in
+        /// </param>
+        public void DisplayListList(ListBox DisplayBoxList)
+        {
+            DisplayListList(null, DisplayBoxList);
+        }
+
+        /// <summary>
+        /// Pushes the current collection of items to a ListBox, attempting to
+        /// select the same item
+        /// </summary>
+        /// <param name="selectedItem">The currently selected item</param>
+        /// <param name="DisplayBoxList">
+        /// The ListBox to display the items in
+        /// </param>
+        public void DisplayListList(T selectedItem, ListBox DisplayBoxList)
+        {
+            this.Sort();
+            DisplayListList_Internal(selectedItem, DisplayBoxList);
+        }
+
+        private void DisplayListList_Internal(T selectedItem, ListBox DisplayBoxList)
+        {
+            if (DisplayBoxList.InvokeRequired)
+            {
+                DisplayBoxList.Invoke(new Action(() => DisplayListList_Internal(selectedItem, DisplayBoxList)));
+            }
+            else
+            {
+                DisplayBoxList.Items.Clear();
+                DisplayBoxList.Items.AddRange(this.Select((x) => x.DisplayIdentifier).ToArray());
+                DisplayBoxList.SelectedIndex = DefaultInList(selectedItem);
             }
         }
 
