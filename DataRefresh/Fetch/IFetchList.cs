@@ -70,21 +70,21 @@ namespace DataRefresh.Fetch
         /// </summary>
         void UpdateCache();
         /// <summary>
-        /// Pushes the current collection of items to a ComboBox
+        /// Pushes the current collection of items to a ListControl
         /// </summary>
         /// <param name="displayBox">
-        /// The ComboBox to display the items in
+        /// The ListControl to display the items in
         /// </param>
-        void DisplayList(ComboBox displayBox);
+        void DisplayList(ListControl displayBox);
         /// <summary>
-        /// Pushes the current collection of items to a ComboBox, attempting to
-        /// select the same item
+        /// Pushes the current collection of items to a ListControl, attempting
+        /// to select the same item
         /// </summary>
         /// <param name="selectedItem">The currently selected item</param>
         /// <param name="displayBox">
-        /// The ComboBox to display the items in
+        /// The ListControl to display the items in
         /// </param>
-        void DisplayList(T selectedItem, ComboBox displayBox);
+        void DisplayList(T selectedItem, ListControl displayBox);
         /// <summary>
         /// Gets the index in the current list of the item which should be
         /// selected by default when <seealso cref="DisplayList"/> is called

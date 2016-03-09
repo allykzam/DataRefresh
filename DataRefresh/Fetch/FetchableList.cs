@@ -193,31 +193,33 @@ namespace DataRefresh.Fetch
         }
 
         /// <summary>
-        /// Pushes the current collection of items to a ComboBox
+        /// Pushes the current collection of items to a ListControl
         /// </summary>
         /// <param name="displayBox">
         /// The ComboBox to display the items in
         /// </param>
-        public void DisplayList(ComboBox displayBox)
+        public void DisplayList(ListControl displayBox)
         {
             DisplayList(null, displayBox);
         }
 
         /// <summary>
-        /// Pushes the current collection of items to a ComboBox, attempting to
-        /// select the same item
+        /// Pushes the current collection of items to a ListControl, attempting
+        /// to select the same item
         /// </summary>
-        /// <param name="selectedItem">The currently selected item</param>
+        /// <param name="selectedItem">
+        /// The currently selected item
+        /// </param>
         /// <param name="displayBox">
         /// The ComboBox to display the items in
         /// </param>
-        public void DisplayList(T selectedItem, ComboBox displayBox)
+        public void DisplayList(T selectedItem, ListControl displayBox)
         {
             this.Sort();
             DisplayList_Internal(selectedItem, displayBox);
         }
 
-        private void DisplayList_Internal(T selectedItem, ComboBox displayBox)
+        private void DisplayList_Internal(T selectedItem, ListControl displayBox)
         {
             if (displayBox.InvokeRequired)
             {
@@ -225,11 +227,30 @@ namespace DataRefresh.Fetch
             }
             else
             {
-                displayBox.Items.Clear();
-                displayBox.Items.AddRange(this.Select((x) => x.DisplayIdentifier).ToArray());
+                if (displayBox is ComboBox)
+                {
+                    ComboBox box = displayBox as ComboBox;
+                    box.Items.Clear();
+                    box.Items.AddRange(this.Select((x) => x.DisplayIdentifier).ToArray());
+                }
+                else if (displayBox is ListBox)
+                {
+                    ListBox box = displayBox as ListBox;
+                    box.Items.Clear();
+                    box.Items.AddRange(this.Select((x) => x.DisplayIdentifier).ToArray());
+                }
+                else
+                {
+                    throw new ArgumentException(
+                        $"The given box must be either a {nameof(ListBox)} or a {nameof(ComboBox)}",
+                        nameof(displayBox)
+                        );
+                }
                 displayBox.SelectedIndex = DefaultInList(selectedItem);
             }
         }
+
+
 
         /// <summary>
         /// Gets the index in the current list of the item which should be
